@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>JavaScript and DOM API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css\game.css">
+    <script src="game.js"></script>
+    <noscript> 
+        Warning - JavaScript is Disabled. 
+        For full functionality of this page, it is necessary to enable JavaScript. 
+    </noscript>
+    <script>
+        var bear;
+    </script>
+</head>
+
+<body onload="start();">
+
+    <!--Contains the rules for the game, the configuration input fields and the control buttons-->
+    <div id="title">
+        <h1>Help the bear escape the bees !</h1>
+        <p>Bear tries to avoid being stung by <input type="text" id="nbBees" value="1" size="3"> bees by running and jumping. The objective is to have as less stings as possible!</p>
+        <p>You can ajust bees' speed <input type="text" id="speedBees" value="50" size="3"> px/ms
+            <br> and the refresh period <input type="text" id="periodTimer" value="10" size="3"> ms </p>
+        <h2>Press left, right, up, down keys to move the bear</h2>
+    </div>
+
+    <!--Shows the number of stings and the best duration-->
+    <div id="scores">
+        <table>
+            <tr>
+                <td>
+                    <p>Stings: [<span id="hits">0</span>]</p>
+                </td>
+                <td>
+                    <p>Best duration: [<span id="duration">?</span>]</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!--Where the characters are located-->
+    <div id="board">
+        <img src="./images/bear.gif" id="bear" alt="bear">
+    </div>
+    <script>
+        var bear;
+    </script>
+</body>
+
+</html>
