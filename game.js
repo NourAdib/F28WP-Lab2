@@ -191,6 +191,7 @@ function moveBees() {
         let dx = getRandomInt(2 * speed) - speed;
         let dy = getRandomInt(2 * speed) - speed;
         bees[i].move(dx, dy);
+        isHit(bees[i], bear); //Everytime the bees move, checks if they hit the bear;
     }
 }
 
@@ -199,5 +200,48 @@ function updateBees() {
     moveBees();
     //use a fixed update period
     let period = document.getElementById("periodTimer").value;
-    updateTimer = setTimeout('updateBees()', period); //Update the bees movement after the specified interval
+
+    let score = hits.innerHTML;
+    if (Number(score) < 1000) {
+        updateTimer = setTimeout('updateBees()', period); //Update the bees movement after the specified interval
+    } else {
+        score = "Game Over"
+        updateTimer = clearTimeout();
+    }
+}
+
+function isHit(defender, offender) {
+
+    if (overlap(defender, offender)) { //Check if the 2 images overlapped
+        let score = hits.innerHTML;
+        score = Number(score) + 1; //Increment the score
+        hits.innerHTML = score;
+    }
+}
+
+function overlap(element1, element2) {
+
+    //The rectangle around the first element
+    left1 = element1.htmlElement.offsetLeft;
+    top1 = element1.htmlElement.offsetTop;
+    right1 = element1.htmlElement.offsetLeft + element1.htmlElement.offsetWidth;
+    bottom1 = element1.htmlElement.offsetTop + element1.htmlElement.offsetHeight;
+
+    //The rectangle around the second element
+    left2 = element2.htmlElement.offsetLeft;
+    top2 = element2.htmlElement.offsetTop;
+    right2 = element2.htmlElement.offsetLeft + element2.htmlElement.offsetWidth;
+    bottom2 = element2.htmlElement.offsetTop + element2.htmlElement.offsetHeight;
+
+    //Calculate the intersection of the 2 rectangles
+    x_intersect = Math.max(0, Math.min(right1, right2) - Math.max(left1, left2));
+    y_intersect = Math.max(0, Math.min(bottom1, bottom2) - Math.max(top1, top2));
+    intersectArea = x_intersect * y_intersect;
+
+    //If intersection is null
+    if (intersectArea == 0 || isNaN(intersectArea)) {
+        return false;
+    }
+
+    return true;
 }
