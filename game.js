@@ -45,6 +45,7 @@ function Bear() {
 
 //Start the game
 function start() {
+
     bear = new Bear(); //create bear
 
     document.addEventListener("keydown", moveBear, false); //Add event listener to the document for key presses
@@ -53,6 +54,17 @@ function start() {
     bees = new Array(); //Create a new bees array
     makeBees(); //Create bees
     updateBees(); //Move the bees around with the specified frequency
+
+    lastStingTime = new Date(); //take start time
+}
+
+function restart() {
+    score = 0;
+    hits.innerHTML = score;
+    duration.innerHTML = 0;
+    updateTimer = clearTimeout();
+    removeBees();
+    start();
 }
 
 //Handling keyboard events to move the bear
@@ -74,8 +86,6 @@ function moveBear(e) {
     if (e.keyCode == KEYDOWN) {
         bear.move(0, 1) //Move the bear down
     }
-
-    lastStingTime = new Date(); //take start time
 }
 
 function setSpeed() {
@@ -183,6 +193,20 @@ function makeBees() {
         i++;
     }
 
+}
+
+function addBee() {
+    let nbBees = document.getElementById("nbBees").value; //Get the number of bees specified by the user
+    nbBees = Number(nbBees); //Convert the content of the input to a number
+    nbBees++;
+    var bee = new Bee(nbBees); //Create a bee
+    bee.display(); //Display the bee on screen
+    bees.push(bee); //Add the bee to the bees array
+}
+
+function removeBees() {
+    beesArray = document.getElementsByClassName("bee");
+    beesArray.forEach(e => e.remove());
 }
 
 function moveBees() {

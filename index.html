@@ -19,7 +19,7 @@
     </script>
 </head>
 
-<body onload="start();">
+<body>
 
     <!--Contains the rules for the game, the configuration input fields and the control buttons-->
     <div id="title">
@@ -28,6 +28,9 @@
         <p>You can ajust bees' speed <input type="text" id="speedBees" value="50" size="3"> or the bear's speed <input type="text" id="speedBear" value="100" size="3"> px/ms
             <br> and the refresh period <input type="text" id="periodTimer" value="10" size="3"> ms </p>
         <h2>Press left, right, up, down keys to move the bear</h2>
+        <button onclick="start();">Start</button>
+        <button onclick="restart();">Restart</button>
+        <button onclick="addBee();">Add Bee</button>
     </div>
 
     <!--Shows the number of stings and the best duration-->
