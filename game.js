@@ -53,6 +53,8 @@ function start() {
     bees = new Array(); //Create a new bees array
     makeBees(); //Create bees
     updateBees(); //Move the bees around with the specified frequency
+
+    lastStingTime = new Date(); //take start time
 }
 
 //Handling keyboard events to move the bear
@@ -190,7 +192,7 @@ function moveBees() {
         //Move the bees randomly in the x and y axies 
         let dx = getRandomInt(2 * speed) - speed;
         let dy = getRandomInt(2 * speed) - speed;
-        bees[i].move(dx, dy);
+        bees[i].move(dx, dy); //For every bee in the array, move 
         isHit(bees[i], bear); //Everytime the bees move, checks if they hit the bear;
     }
 }
@@ -206,6 +208,7 @@ function updateBees() {
         updateTimer = setTimeout('updateBees()', period); //Update the bees movement after the specified interval
     } else {
         score = "Game Over"
+        hits.innerHTML = score;
         updateTimer = clearTimeout();
     }
 }
@@ -216,6 +219,22 @@ function isHit(defender, offender) {
         let score = hits.innerHTML;
         score = Number(score) + 1; //Increment the score
         hits.innerHTML = score;
+
+        //Calculate longest duration
+        let newStingTime = new Date();
+        let thisDuration = newStingTime - lastStingTime;
+        lastStingTime = newStingTime;
+        let longestDuration = Number(duration.innerHTML);
+
+        //If there is no longestDuration yet, the current Duration is the longest duration
+        if (longestDuration === 0 || isNaN(longestDuration)) {
+            longestDuration = thisDuration;
+        } else {
+            if (longestDuration < thisDuration) longestDuration = thisDuration;
+        }
+
+        //Update the longest duration display
+        document.getElementById("duration").innerHTML = longestDuration;
     }
 }
 
