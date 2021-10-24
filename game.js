@@ -53,8 +53,6 @@ function start() {
     bees = new Array(); //Create a new bees array
     makeBees(); //Create bees
     updateBees(); //Move the bees around with the specified frequency
-
-    lastStingTime = new Date(); //take start time
 }
 
 //Handling keyboard events to move the bear
@@ -76,6 +74,8 @@ function moveBear(e) {
     if (e.keyCode == KEYDOWN) {
         bear.move(0, 1) //Move the bear down
     }
+
+    lastStingTime = new Date(); //take start time
 }
 
 function setSpeed() {
