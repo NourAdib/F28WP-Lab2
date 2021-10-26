@@ -54,8 +54,6 @@ function start() {
     bees = new Array(); //Create a new bees array
     makeBees(); //Create bees
     updateBees(); //Move the bees around with the specified frequency
-
-    lastStingTime = new Date(); //take start time
 }
 
 function restart() {
@@ -69,6 +67,11 @@ function restart() {
 
 //Handling keyboard events to move the bear
 function moveBear(e) {
+    if (start != true) {
+        start = true;
+        lastStingTime = new Date(); //take start time
+    }
+
     //Codes of the 4 arrow keys 
     const KEYUP = 38;
     const KEYDOWN = 40;
