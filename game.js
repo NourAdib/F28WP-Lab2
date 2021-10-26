@@ -8,7 +8,7 @@ function Bear() {
     //Move the bear by xDir steps in the horiztonal axis
     //Or by yDir in the vertical axis
     this.move = function(xDir, yDir) {
-        this.fitBounds(); //Ensure the bear is within the boundries when it moves
+
         this.x += this.dBear * xDir; //Update the x position by xDir steps
         this.y += this.dBear * yDir; // Update the y position by yDir steps
         this.display(); //Update the display
@@ -16,6 +16,7 @@ function Bear() {
 
     //Update the display
     this.display = function() {
+        this.fitBounds(); //Ensure the bear is within the boundries when it moves
         this.htmlElement.style.left = this.x + "px"; //Update the display for the x axis
         this.htmlElement.style.top = this.y + "px"; //Update the display for the y axis
         this.htmlElement.style.display = "block"; //Update the display to take the whole width
