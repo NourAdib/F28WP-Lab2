@@ -206,6 +206,7 @@ function addBee() {
     var bee = new Bee(nbBees); //Create a bee
     bee.display(); //Display the bee on screen
     bees.push(bee); //Add the bee to the bees array
+    document.getElementById("nbBees").value = nbBees; //Updating the counter on the screen
 }
 
 function removeBees() {
